@@ -16,7 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/landing-page.css" rel="stylesheet">
-
+    <link href="css/clock.css" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700' rel='stylesheet' type='text/css'>
@@ -48,6 +48,7 @@
 
     position: center;
   }
+
     .fillchart{background-position:center; margin-bottom:0px; margin-top:30px;margin-left:3%; margin-right:3%;}
     .fillstock{width:85%;height:100%;background-position:center;background-size:auto;margin-left:8%; margin-right:10%;}
     .spacer-margin{margin-left:auto; margin-right:auto;width:200px;border-top: 3px solid #e7e7e7;;}
@@ -82,18 +83,14 @@
         </div>
         <!-- /.container -->
     </nav>
-    
+
   
 	
     <div class="content-section-b">
     
         <!-- Charts Begin Here -->
     <div class="charts fillchart">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6"> </div>
-            </div>
-        </div>
+        
         <div class="container">
             <ul class="nav nav-tabs nav-justified">
                   <li class="active"><a class="nav-color" data-toggle="tab" href="#chart1">USDJPY</a></li>
@@ -261,7 +258,19 @@
 
     </div>
     <!-- /.content-section-b -->
-
+    <div class="content-section-a">
+        <div class="container">
+            <div class="col-lg-4 col-md-6">
+                <div id="clock"></div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div id="clock1"></div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div id="clock2"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- .content-section-b starts here -->
     <div class="content-section-b">
@@ -724,7 +733,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/sm_widgets.js"></script>
-
+    <script src="js/clock.js"></script>
  
 </body>
 

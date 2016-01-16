@@ -1,0 +1,32 @@
+/* Styling it all now! */
+
+@font-face {
+	font-family: 'digi';
+	src: url('http://cssdeck.com/uploads/resources/fonts/digii/DS-DIGII.TTF');
+}
+
+#clock {
+	width: 30px; height: 30px;
+	background: black;
+	font-size: 4em;
+	color: white;
+	margin: auto;
+	
+}
+#clock1 {
+	width: 30px; height: 30px;
+	background: black;
+	font-size: 4em;
+	color: white;
+	margin: auto;
+	
+}
+#clock2 {
+	width: 30px; height: 30px;
+	background: black;
+	font-size: 4em;
+	color: white;
+	margin: auto;
+
+}
+
