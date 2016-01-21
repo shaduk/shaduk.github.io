@@ -40,7 +40,7 @@
   // making yqlRunQuery() available in the global scope
   window.smYqlRunQuery = yqlRunQuery;
   window.build = buildWidgets;
-
+  setInterval(buildWidgets, 5000);
   function buildWidgets() {
     var quoteSymbols = [];
     var statsSymbols = [];
