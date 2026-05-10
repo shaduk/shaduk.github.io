@@ -15,3 +15,7 @@ pnpm preview
 Posts live in `src/content/posts`. Add a new `.mdx` file with `title`,
 `description`, `pubDate`, `minutes`, and `tags` frontmatter.
 
+The production site is configured for `https://shadkhan.com` via GitHub Pages.
+The domain registrar should point the apex domain at GitHub Pages using the
+standard GitHub Pages `A` and `AAAA` records.
+
