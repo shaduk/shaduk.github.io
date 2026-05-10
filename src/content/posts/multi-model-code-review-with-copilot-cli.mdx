@@ -2,7 +2,7 @@
 title: "Multi-Model Code Review With Copilot CLI"
 description: "A day-to-day workflow for using GitHub Copilot CLI to run several AI reviewers against the same branch diff."
 pubDate: 2026-05-10
-minutes: 4
+minutes: 5
 tags: ["ai", "copilot", "code-review", "workflow"]
 ---
 
@@ -29,24 +29,26 @@ When three reviewers flag the same bug, I treat it as high confidence. When only
 one catches something, I still want to see it. That lone finding is often the
 edge case I would have missed while focused on the main path.
 
-## The Review Shape
+## The Workflow, Step by Step
 
-For each branch, I like the reviewers to inspect the same diff across five
-dimensions:
+I keep the reusable GitHub Copilot CLI skill in this repo as a
+[SKILL.md file](https://github.com/shaduk/shaduk.github.io/blob/main/.github/skills/multi-model-branch-review/SKILL.md).
+That file turns the review shape into a repeatable sequence:
 
-- Breaking changes
-- Security risks
-- Bugs and edge cases
-- Design fit
-- Code quality
+1. Pick the ensemble: choose at least two models so the review has real cross-checking instead of one confident voice.
+2. Refresh the base branch: fetch the latest base branch, usually `origin/main` or `origin/master`, before asking anyone to review stale work.
+3. Collect the diff: capture the branch diff and a short summary of the changed files so every reviewer starts from the same evidence.
+4. Launch independent reviewers: run one review agent per model in parallel, each with the same branch summary and diff.
+5. Review the same dimensions: check breaking changes, security risks, bugs and edge cases, design fit, and code quality.
+6. Deduplicate the findings: collapse repeated issues into one item and keep the model names attached to the finding.
+7. Rank the action list: put high-impact or high-confidence issues first, then keep lower-confidence single-model catches visible for human judgment.
 
 The important part is that the reviews happen independently. If the first model
 frames the whole problem, the others can start echoing it. Parallel review keeps
 the perspectives cleaner.
 
-After that, I deduplicate the findings and collapse them into a severity-ranked
-report. I do not need three paragraphs saying the same test can fail. I need one
-clear item with the evidence, impact, and suggested fix.
+I do not need three paragraphs saying the same test can fail. I need one clear
+item with the evidence, impact, and suggested fix.
 
 ## How It Fits Into My Day
 
@@ -63,5 +65,5 @@ to a machine, but a tighter review loop around work I still own.
 
 I first shared the short version of this workflow on
 [X](https://x.com/shadkhan/status/2038855277567754547), along with the
-[GitHub Gist](https://gist.github.com/shaduk/cde1623df0f4f9a29ceb7a7d8e48c6bd)
+[original GitHub Gist](https://gist.github.com/shaduk/cde1623df0f4f9a29ceb7a7d8e48c6bd)
 for the skill.
