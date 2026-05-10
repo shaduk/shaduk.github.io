@@ -13,21 +13,32 @@ const posts = await getSortedPosts();
   description="Senior Software Engineer at Microsoft writing about AI, programming, and practical software work."
 >
   <section id="hero" class="pt-6 pb-4">
-    <div class="max-w-3xl">
-      <div class="flex items-center gap-2">
-        <h1 class="my-2 inline-block text-2xl font-bold sm:my-4 sm:text-3xl">Hi, I'm Shad Khan.</h1>
-        <a href="/rss.xml" class="focus-outline inline-flex text-accent" aria-label="RSS feed" title="RSS feed">
-          <Rss class="size-5 stroke-[3]" aria-hidden="true" />
-        </a>
-      </div>
-      <p class="text-muted">
-        Senior Software Engineer at Microsoft on the Foundry Inferencing and Training team.<br
-          class="hidden sm:block"
+    <div class="flex flex-col items-center gap-5 sm:flex-row sm:items-start">
+      <a href="/about/" class="focus-outline group block shrink-0" aria-label="About Shad Khan">
+        <img
+          src="/profile.jpg"
+          alt="Shad Khan"
+          class="size-36 rounded-full object-cover transition duration-300 group-hover:scale-105 group-hover:shadow-xl sm:size-40"
+          width="160"
+          height="160"
         />
-        AI, programming, practical notes, and hard-won workflows.
-      </p>
-      <div class="mt-4">
-        <SocialLinks />
+      </a>
+      <div class="flex-1 text-center sm:text-left">
+        <div class="flex items-center justify-center gap-2 sm:justify-start">
+          <h1 class="my-2 inline-block text-2xl font-bold sm:my-4 sm:text-3xl">Hi, I'm Shad Khan.</h1>
+          <a href="/rss.xml" class="focus-outline inline-flex text-accent" aria-label="RSS feed" title="RSS feed">
+            <Rss class="size-5 stroke-[3]" aria-hidden="true" />
+          </a>
+        </div>
+        <p class="text-muted">
+          Senior Software Engineer at Microsoft on the Foundry Inferencing and Training team.<br
+            class="hidden sm:block"
+          />
+          AI, programming, practical notes, and hard-won workflows.
+        </p>
+        <div class="mt-4">
+          <SocialLinks />
+        </div>
       </div>
     </div>
   </section>

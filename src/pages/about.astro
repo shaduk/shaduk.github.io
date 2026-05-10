@@ -4,13 +4,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="About" description="About Shad Khan and the themes behind this blog.">
   <section class="py-10">
-    <div class="prose-blog">
-      <h1>About</h1>
-      <p>
-        I am a Senior Software Engineer at Microsoft on the Foundry Inferencing and Training team. I
-        write about the practical side of software: AI-assisted development, backend systems,
-        developer workflow, and the small decisions that make a codebase easier to live with.
-      </p>
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <img
+        src="/profile.jpg"
+        alt="Shad Khan"
+        class="mx-auto size-32 rounded-full object-cover sm:mx-0"
+        width="128"
+        height="128"
+      />
+      <div class="prose-blog flex-1">
+        <h1>About</h1>
+        <p>
+          I am a Senior Software Engineer at Microsoft on the Foundry Inferencing and Training team.
+          I write about the practical side of software: AI-assisted development, backend systems,
+          developer workflow, and the small decisions that make a codebase easier to live with.
+        </p>
+      </div>
     </div>
   </section>
 </BaseLayout>
