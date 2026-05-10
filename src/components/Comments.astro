@@ -1,0 +1,84 @@
+---
+interface Props {
+  term: string;
+}
+
+const { term } = Astro.props;
+
+const repo = "shaduk/shaduk.github.io";
+const repoId = "R_kgDOSZFHOA";
+const category = "General";
+const categoryId = "DIC_kwDOSZFHOM4C8umk";
+---
+
+<section class="mt-16 border-t border-border pt-10" aria-labelledby="comments-title">
+  <div class="mb-6">
+    <h2 id="comments-title" class="text-xl font-semibold">Comments</h2>
+    <p class="mt-2 text-sm text-muted">Sign in with GitHub to join the discussion.</p>
+  </div>
+  <div
+    class="min-h-40"
+    data-giscus-comments
+    data-giscus-repo={repo}
+    data-giscus-repo-id={repoId}
+    data-giscus-category={category}
+    data-giscus-category-id={categoryId}
+    data-giscus-term={term}
+  >
+  </div>
+</section>
+
+<script is:inline>
+  function currentGiscusTheme() {
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  }
+
+  function updateGiscusTheme() {
+    const iframe = document.querySelector("iframe.giscus-frame");
+
+    if (!(iframe instanceof HTMLIFrameElement) || !iframe.contentWindow || !iframe.src.startsWith("https://giscus.app")) {
+      return;
+    }
+
+    iframe.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: currentGiscusTheme() } } },
+      "https://giscus.app",
+    );
+  }
+
+  function setupGiscusComments() {
+    const container = document.querySelector("[data-giscus-comments]");
+
+    if (!container || container.dataset.loaded === "true") return;
+
+    container.dataset.loaded = "true";
+
+    const script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.setAttribute("data-repo", container.dataset.giscusRepo ?? "");
+    script.setAttribute("data-repo-id", container.dataset.giscusRepoId ?? "");
+    script.setAttribute("data-category", container.dataset.giscusCategory ?? "");
+    script.setAttribute("data-category-id", container.dataset.giscusCategoryId ?? "");
+    script.setAttribute("data-mapping", "specific");
+    script.setAttribute("data-term", container.dataset.giscusTerm ?? "");
+    script.setAttribute("data-strict", "1");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "bottom");
+    script.setAttribute("data-theme", currentGiscusTheme());
+    script.setAttribute("data-lang", "en");
+    script.setAttribute("data-loading", "lazy");
+
+    container.append(script);
+  }
+
+  setupGiscusComments();
+
+  if (document.documentElement.dataset.giscusBound !== "true") {
+    document.documentElement.dataset.giscusBound = "true";
+    document.addEventListener("astro:page-load", setupGiscusComments);
+    window.addEventListener("themechange", updateGiscusTheme);
+  }
+</script>

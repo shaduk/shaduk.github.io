@@ -19,3 +19,7 @@ The production site is configured for `https://shadkhan.com` via GitHub Pages.
 The domain registrar should point the apex domain at GitHub Pages using the
 standard GitHub Pages `A` and `AAAA` records.
 
+Comments are powered by Giscus and stored in GitHub Discussions. The repository
+must have Discussions enabled and the Giscus GitHub App installed for
+`shaduk/shaduk.github.io`.
+

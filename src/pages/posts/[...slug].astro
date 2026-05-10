@@ -1,6 +1,7 @@
 ---
 import { CalendarDays } from "@lucide/astro";
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import Comments from "../../components/Comments.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { formatDate } from "../../lib/posts";
 
@@ -35,5 +36,6 @@ const { Content } = await render(post);
     <div class="prose-blog mt-10">
       <Content />
     </div>
+    <Comments term={post.id} />
   </article>
 </BaseLayout>

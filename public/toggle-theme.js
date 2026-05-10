@@ -13,6 +13,7 @@ function preferredTheme() {
 function applyTheme(theme) {
   document.documentElement.classList.toggle("dark", theme === "dark");
   localStorage.setItem(STORAGE_KEY, theme);
+  window.dispatchEvent(new CustomEvent("themechange", { detail: { theme } }));
 
   document.querySelectorAll("[data-theme-toggle]").forEach((button) => {
     const nextTheme = theme === "dark" ? "light" : "dark";
