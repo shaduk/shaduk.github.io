@@ -1,0 +1,65 @@
+---
+title: "Multi-Model Code Review With Copilot CLI"
+description: "A day-to-day workflow for using GitHub Copilot CLI to run several AI reviewers against the same branch diff."
+pubDate: 2026-05-10
+minutes: 4
+tags: ["ai", "copilot", "code-review", "workflow"]
+---
+
+One GitHub Copilot CLI skill I use day to day is running multi-model ensemble
+code reviews on my branch before I ask anyone else to look at it.
+
+The idea is simple: do not ask one model to be the final judge. Put several
+models against the same diff, let them disagree, and then consolidate the useful
+findings into one review report.
+
+## Why Use An Ensemble
+
+Every model has a shape. One is better at spotting design drift. Another is more
+literal about security concerns. Another catches boring breakages because it is
+less tempted by the architecture conversation.
+
+That is why I prefer doing this through GitHub Copilot CLI instead of running a
+single standalone assistant. Copilot gives me one place to pit Claude, GPT, and
+Gemini-style reviewers against the same branch. The value is not that one of
+them is always right. The value is that their overlap and disagreement are both
+useful signals.
+
+When three reviewers flag the same bug, I treat it as high confidence. When only
+one catches something, I still want to see it. That lone finding is often the
+edge case I would have missed while focused on the main path.
+
+## The Review Shape
+
+For each branch, I like the reviewers to inspect the same diff across five
+dimensions:
+
+- Breaking changes
+- Security risks
+- Bugs and edge cases
+- Design fit
+- Code quality
+
+The important part is that the reviews happen independently. If the first model
+frames the whole problem, the others can start echoing it. Parallel review keeps
+the perspectives cleaner.
+
+After that, I deduplicate the findings and collapse them into a severity-ranked
+report. I do not need three paragraphs saying the same test can fail. I need one
+clear item with the evidence, impact, and suggested fix.
+
+## How It Fits Into My Day
+
+I run this before a human review when the branch is still cheap to change. It is
+not a replacement for tests, and it is not a replacement for judgment. It is a
+fast second pass that helps me see the diff from several angles before the work
+leaves my machine.
+
+The best output is small: a few real issues, a few non-issues I can dismiss, and
+occasionally one sharp catch that changes the way I look at the patch.
+
+That is the useful part of AI-assisted development for me. Not a dramatic handoff
+to a machine, but a tighter review loop around work I still own.
+
+I first shared the short version of this workflow on
+[X](https://x.com/shadkhan/status/2038855277567754547).
