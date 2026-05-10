@@ -1,0 +1,26 @@
+---
+import { Github, Linkedin, Mail, Rss, Twitter } from "@lucide/astro";
+
+const links = [
+  { href: "https://github.com/shaduk", label: "Shad Khan on GitHub", Icon: Github },
+  { href: "https://x.com/shadkhan", label: "Shad Khan on X", Icon: Twitter },
+  { href: "https://www.linkedin.com/in/khanshad/", label: "Shad Khan on LinkedIn", Icon: Linkedin },
+  { href: "mailto:shad@shadkhan.net", label: "Send email to Shad Khan", Icon: Mail },
+  { href: "/rss.xml", label: "RSS feed", Icon: Rss },
+];
+---
+
+<div class="flex flex-wrap items-center justify-center gap-1 sm:justify-start">
+  {
+    links.map(({ href, label, Icon }) => (
+      <a
+        href={href}
+        class="focus-outline group inline-flex size-10 items-center justify-center text-muted transition hover:rotate-6 hover:text-accent sm:size-8"
+        title={label}
+        aria-label={label}
+      >
+        <Icon class="size-5" aria-hidden="true" />
+      </a>
+    ))
+  }
+</div>

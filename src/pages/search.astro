@@ -1,0 +1,84 @@
+---
+import { Search } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { formatDate, getSortedPosts } from "../lib/posts";
+
+const posts = await getSortedPosts();
+const searchItems = posts.map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  date: formatDate(post.data.pubDate),
+  minutes: post.data.minutes,
+  tags: post.data.tags,
+  url: `/posts/${post.id}/`,
+}));
+---
+
+<BaseLayout title="Search" description="Search Shad Khan posts.">
+  <section class="py-10">
+    <h1 class="text-3xl font-bold">Search</h1>
+    <div class="mt-6">
+      <label class="sr-only" for="search-input">Search posts</label>
+      <div class="relative">
+        <Search class="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-muted" aria-hidden="true" />
+        <input
+          id="search-input"
+          class="focus-outline w-full rounded-md border border-border bg-surface py-3 pl-11 pr-4 text-foreground placeholder:text-muted"
+          type="search"
+          autocomplete="off"
+          placeholder="Search posts"
+        />
+      </div>
+      <ul id="search-results" class="mt-8" aria-live="polite"></ul>
+    </div>
+  </section>
+
+  <script define:vars={{ searchItems }}>
+    const input = document.querySelector("#search-input");
+    const results = document.querySelector("#search-results");
+
+    function normalize(value) {
+      return value.toLowerCase().trim();
+    }
+
+    function render(items) {
+      results.innerHTML = items
+        .map(
+          (item) => `
+            <li class="my-8">
+              <article>
+                <a href="${item.url}" class="focus-outline inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 hover:underline">
+                  <h2>${item.title}</h2>
+                </a>
+                <div class="mb-3 flex flex-wrap items-center gap-3 text-sm italic text-muted">
+                  <span>${item.date}</span>
+                  <span aria-hidden="true">-</span>
+                  <span>${item.minutes} min read</span>
+                </div>
+                <p class="max-w-2xl text-muted">${item.description}</p>
+              </article>
+            </li>
+          `,
+        )
+        .join("");
+    }
+
+    function searchPosts() {
+      const query = normalize(input.value);
+
+      if (!query) {
+        render(searchItems);
+        return;
+      }
+
+      render(
+        searchItems.filter((item) =>
+          normalize([item.title, item.description, item.tags.join(" ")].join(" ")).includes(query),
+        ),
+      );
+    }
+
+    input.addEventListener("input", searchPosts);
+    render(searchItems);
+  </script>
+</BaseLayout>

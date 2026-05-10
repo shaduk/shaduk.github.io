@@ -1,0 +1,37 @@
+---
+import { CalendarDays } from "@lucide/astro";
+import { formatDate, type Post } from "../lib/posts";
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+<ul>
+  {
+    posts.map((post) => (
+      <li class="my-8">
+        <article>
+          <a
+            href={`/posts/${post.id}/`}
+            class="focus-outline inline-block text-lg font-medium text-accent decoration-dashed underline-offset-4 hover:underline"
+          >
+            <h3>{post.data.title}</h3>
+          </a>
+          <div class="mb-3 flex flex-wrap items-center gap-3 text-sm italic text-muted">
+            <span class="inline-flex items-center gap-2">
+              <CalendarDays class="size-4" aria-hidden="true" />
+              <span class="sr-only">Published:</span>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+            </span>
+            <span aria-hidden="true">-</span>
+            <span>{post.data.minutes} min read</span>
+          </div>
+          <p class="max-w-2xl text-muted">{post.data.description}</p>
+        </article>
+      </li>
+    ))
+  }
+</ul>

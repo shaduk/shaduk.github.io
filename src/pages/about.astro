@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About" description="About Shad Khan and the themes behind this blog.">
+  <section class="py-10">
+    <div class="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <img
+        src="/avatar.svg"
+        alt="Shad Khan avatar"
+        class="mx-auto size-32 rounded-full object-cover sm:mx-0"
+        width="128"
+        height="128"
+      />
+      <div class="prose-blog flex-1">
+        <h1>About</h1>
+        <p>
+          I write about the practical side of software: AI-assisted development, backend systems,
+          developer workflow, and the small decisions that make a codebase easier to live with.
+        </p>
+        <p>
+          The point of this site is to keep the signal high. Posts should feel like notes from the
+          bench: concrete, opinionated, and useful enough to come back to later.
+        </p>
+        <h2>Current Themes</h2>
+        <ul>
+          <li>Working with coding agents without losing engineering taste.</li>
+          <li>Designing feedback loops that catch regressions early.</li>
+          <li>Keeping tools small, understandable, and pleasant to use.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

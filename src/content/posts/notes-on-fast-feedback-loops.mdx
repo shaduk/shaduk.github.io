@@ -1,0 +1,28 @@
+---
+title: "Notes On Fast Feedback Loops"
+description: "A short field guide to making local development faster without making the system stranger."
+pubDate: 2026-03-22
+minutes: 6
+tags: ["developer tools", "testing", "performance"]
+---
+
+Fast feedback is not the same as more automation. It is the distance between a change and a clear
+answer. The shorter that distance gets, the more calmly a team can make decisions.
+
+The trick is to remove waiting without hiding reality. A local watcher is helpful when it tells you
+the truth quickly. It is harmful when it turns the build into background weather that nobody trusts.
+
+## Keep The First Check Cheap
+
+The first check should catch the obvious mistake: syntax, types, a focused unit test, or the page you
+are actively changing. It should run so often that it feels like part of typing.
+
+The slower checks still matter. They belong at the boundary: before merging, before deploying, and
+any time the change touches a shared contract.
+
+## Name The Slow Parts
+
+When a test suite feels slow, measure before reorganizing. Slow setup, shared databases, and too much
+I/O tend to hide under the same vague complaint. A small timing report can make the next fix obvious.
+
+Speed is useful because it buys attention back. Spend that attention on the behavior that matters.

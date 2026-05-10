@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --color-background: #fbfbfa;
+  --color-foreground: #17181c;
+  --color-surface: #ffffff;
+  --color-muted: #626a73;
+  --color-border: #e3e5e8;
+  --color-accent: #c84636;
+  --color-accent-foreground: #fff8f6;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    --color-background: #101215;
+    --color-foreground: #f1f3f5;
+    --color-surface: #171a1f;
+    --color-muted: #a4acb5;
+    --color-border: #2b3037;
+    --color-accent: #ff806d;
+    --color-accent-foreground: #1f0c09;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 24%, transparent);
+  }
+
+  a {
+    text-decoration-thickness: from-font;
+  }
+}
+
+@layer components {
+  .focus-outline {
+    @apply rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .prose-blog {
+    @apply prose prose-neutral max-w-none dark:prose-invert;
+  }
+
+  .prose-blog a {
+    color: var(--color-accent);
+    text-decoration-style: dashed;
+    text-underline-offset: 0.25rem;
+  }
+
+  .prose-blog h2,
+  .prose-blog h3 {
+    scroll-margin-top: 6rem;
+  }
+}

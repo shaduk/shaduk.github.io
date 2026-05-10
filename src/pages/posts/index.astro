@@ -1,0 +1,14 @@
+---
+import PostList from "../../components/PostList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSortedPosts } from "../../lib/posts";
+
+const posts = await getSortedPosts();
+---
+
+<BaseLayout title="Posts" description="All posts from Shad Khan.">
+  <section class="py-10">
+    <h1 class="text-3xl font-bold">Posts</h1>
+    <PostList posts={posts} />
+  </section>
+</BaseLayout>
